@@ -67,7 +67,7 @@ const simulationFragmentShader = `
     p1 *= norm.y;
     p2 *= norm.z;
     p3 *= norm.w;
-    vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1 Bradford,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+    vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
     m = m * m;
     return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1),
                                   dot(p2,x2), dot(p3,x3) ) );
@@ -230,6 +230,9 @@ export function AetherEngine() {
     }
   });
 
+  const particlePositions = useMemo(() => new Float32Array(size * size * 3), [size]);
+  const particleUvs = useMemo(() => particlesUv, [particlesUv]);
+
   return (
     <group>
       {/* Simulation Portal */}
@@ -252,16 +255,16 @@ export function AetherEngine() {
           <bufferAttribute
             attach="attributes-position"
             count={size * size}
-            array={new Float32Array(size * size * 3)}
+            array={particlePositions}
             itemSize={3}
-            args={[new Float32Array(size * size * 3), 3]}
+            args={[particlePositions, 3]}
           />
           <bufferAttribute
             attach="attributes-uv"
             count={size * size}
-            array={particlesUv}
+            array={particleUvs}
             itemSize={2}
-            args={[particlesUv, 2]}
+            args={[particleUvs, 2]}
           />
         </bufferGeometry>
         <shaderMaterial

@@ -154,7 +154,7 @@ function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" ref={sectionRef} className="py-32 px-4 relative z-10 border-t border-[rgba(0,245,255,0.2)] bg-[rgba(0,0,0,0.4)]">
+    <section ref={sectionRef} className="py-32 px-4 relative z-10 border-t border-[rgba(0,245,255,0.2)] bg-[rgba(0,0,0,0.4)]">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <SplitTextGlow text="COMPILED PROJECTS" className="text-4xl md:text-6xl font-black mb-4 justify-center" colorType="secondary" />
@@ -351,6 +351,7 @@ function NeuralHUD({
     let frames = 0;
     let lastTime = performance.now();
     
+    let reqId: number;
     const updateFPS = () => {
       frames++;
       const now = performance.now();
@@ -359,9 +360,9 @@ function NeuralHUD({
         frames = 0;
         lastTime = now;
       }
-      requestAnimationFrame(updateFPS);
+      reqId = requestAnimationFrame(updateFPS);
     };
-    const reqId = requestAnimationFrame(updateFPS);
+    reqId = requestAnimationFrame(updateFPS);
 
     const interval = setInterval(() => {
       setLatency(31 + Math.floor(Math.random() * 5));
@@ -369,7 +370,7 @@ function NeuralHUD({
     }, 2000);
 
     return () => {
-      cancelAnimationFrame(reqId);
+      if (reqId) cancelAnimationFrame(reqId);
       clearInterval(interval);
     };
   }, []);
