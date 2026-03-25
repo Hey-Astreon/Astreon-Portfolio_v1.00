@@ -1,0 +1,3 @@
+@echo off
+echo Starting Development Server...
+pnpm run dev

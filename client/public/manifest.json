@@ -1,0 +1,17 @@
+{
+  "name": "Ayushi Raj | Sentient Architect",
+  "short_name": "AR Portfolio",
+  "description": "Portfolio of Ayushi Raj, specializing in AI & Full-Stack Development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0a14",
+  "theme_color": "#e91e8c",
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
