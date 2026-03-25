@@ -38,8 +38,8 @@ export function CursorTrail() {
         ref={circleRef}
         className="fixed top-0 left-0 w-4 h-4 -ml-2 -mt-2 rounded-full pointer-events-none z-[10000]"
         style={{
-          background: 'rgba(233, 30, 140, 0.4)',
-          boxShadow: '0 0 15px rgba(233, 30, 140, 0.6), 0 0 30px rgba(0, 245, 255, 0.2)',
+          background: 'rgba(0, 245, 255, 0.4)',
+          boxShadow: '0 0 15px rgba(191, 148, 255, 0.6), 0 0 30px rgba(0, 245, 255, 0.2)',
           filter: 'blur(2px)',
           transition: 'width 0.3s, height 0.3s, opacity 0.3s'
         }}

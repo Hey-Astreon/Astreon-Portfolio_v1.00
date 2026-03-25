@@ -8,11 +8,11 @@ const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 const socialNodes = [
-  { label: 'Neural Mail', href: 'mailto:roushanraut404@gmail.com', icon: Mail, color: '#4285F4', protocol: 'SMTP_OVER_TLS' },
-  { label: 'GitHub Stack', href: 'https://github.com/Hey-Astreon', icon: Github, color: '#fdf0ff', protocol: 'GIT_CORE_V3' },
+  { label: 'Neural Mail', href: 'mailto:roushanraut404@gmail.com', icon: Mail, color: '#4dadeb', protocol: 'SMTP_OVER_TLS' },
+  { label: 'GitHub Stack', href: 'https://github.com/Hey-Astreon', icon: Github, color: '#bf94ff', protocol: 'GIT_CORE_V3' },
   { label: 'LinkedIn Link', href: 'https://www.linkedin.com/in/roushan-kumar-ab4b19250/', icon: Linkedin, color: '#00f5ff', protocol: 'AUTH_TOKEN_ACTIVE' },
-  { label: 'Insta_Signal', href: 'https://www.instagram.com/its_astreon', icon: Instagram, color: '#ff0055', protocol: 'MEDIA_STREAM' },
-  { label: 'Discord Node', href: 'https://discord.com/users/its_astreon', icon: DiscordIcon, color: '#5865F2', protocol: 'VOICE_RELAY_ON' },
+  { label: 'Insta_Signal', href: 'https://www.instagram.com/its_astreon', icon: Instagram, color: '#bf94ff', protocol: 'MEDIA_STREAM' },
+  { label: 'Discord Node', href: 'https://discord.com/users/its_astreon', icon: DiscordIcon, color: '#00f5ff', protocol: 'VOICE_RELAY_ON' },
 ];
 
 export function NeuralNexusSocials() {
@@ -44,11 +44,12 @@ export function NeuralNexusSocials() {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#bf94ff]/20 group-hover:border-[#bf94ff] transition-colors duration-300" />
 
               {/* Holographic Pulse */}
-              <div className="absolute inset-0 bg-[#bf94ff]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg blur-xl" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg blur-2xl" 
+                   style={{ backgroundColor: `${node.color}20` }} />
               
               <div className="relative z-10 flex flex-col items-center">
-                <div className="p-4 rounded-full border border-[#bf94ff]/10 bg-black/40 mb-4 group-hover:scale-110 group-hover:border-[#bf94ff]/50 transition-all duration-500" style={{ boxShadow: `0 0 20px ${node.color}10` }}>
-                  <Icon className="w-8 h-8 md:w-10 md:h-10 text-[#fdf0ff] opacity-80 group-hover:opacity-100 group-hover:text-[#bf94ff] transition-all" />
+                <div className="p-4 rounded-full border border-[#bf94ff]/10 bg-black/40 mb-4 group-hover:scale-110 group-hover:border-[#bf94ff]/50 transition-all duration-500" style={{ boxShadow: `0 0 30px ${node.color}30` }}>
+                  <Icon className="w-8 h-8 md:w-10 md:h-10 text-[#fdf0ff] opacity-80 group-hover:opacity-100 transition-all" style={{ color: node.color }} />
                 </div>
                 
                 <span className="text-[10px] md:text-xs font-mono text-[#4dadeb] tracking-[0.2em] uppercase mb-1">{node.protocol}</span>

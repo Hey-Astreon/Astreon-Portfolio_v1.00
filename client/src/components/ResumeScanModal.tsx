@@ -40,15 +40,15 @@ export function ResumeScanModal({ isOpen, onClose, onDownload }: { isOpen: boole
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            className="relative w-full max-w-lg bg-[#0d0a14] border border-[#e91e8c]/30 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(233,30,140,0.2)]"
+            className="relative w-full max-w-lg bg-[#000000] border border-[#bf94ff]/30 rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(191,148,255,0.2)]"
           >
             {/* Header */}
-            <div className="p-4 border-b border-[#e91e8c]/20 flex justify-between items-center bg-[#e91e8c]/5">
+            <div className="p-4 border-b border-[#bf94ff]/20 flex justify-between items-center bg-[#bf94ff]/5">
               <div className="flex items-center gap-3">
-                <FileText className="text-[#e91e8c]" size={20} />
+                <FileText className="text-[#bf94ff]" size={20} />
                 <h3 className="font-orbitron font-bold text-sm tracking-widest">NEURAL_CV_REPLICATION</h3>
               </div>
-              <button onClick={onClose} className="text-[#ff6eb4] hover:scale-110 transition-transform">
+              <button onClick={onClose} className="text-[#bf94ff] hover:scale-110 transition-transform">
                 <X size={20} />
               </button>
             </div>
@@ -63,7 +63,7 @@ export function ResumeScanModal({ isOpen, onClose, onDownload }: { isOpen: boole
                   <div className="h-2 w-full bg-[#fdf0ff]/20 mb-2" />
                   <div className="h-2 w-full bg-[#fdf0ff]/20 mb-2" />
                   <div className="h-2 w-3/4 bg-[#fdf0ff]/20 mb-8" />
-                  <div className="h-4 w-1/3 bg-[#e91e8c] mb-4" />
+                  <div className="h-4 w-1/3 bg-[#bf94ff] mb-4" />
                   <div className="h-2 w-full bg-[#fdf0ff]/20 mb-2" />
                   <div className="h-2 w-5/6 bg-[#fdf0ff]/20 mb-2" />
                 </div>
@@ -94,7 +94,7 @@ export function ResumeScanModal({ isOpen, onClose, onDownload }: { isOpen: boole
                         
                         <button 
                           onClick={onDownload}
-                          className="mt-6 flex items-center gap-2 bg-[#e91e8c] hover:bg-[#ff6eb4] text-white px-8 py-3 rounded-md font-bold text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(233,30,140,0.5)] transition-all transform hover:-translate-y-1"
+                          className="mt-6 flex items-center gap-2 bg-[#bf94ff] hover:bg-[#a370ff] text-white px-8 py-3 rounded-md font-bold text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(191,148,255,0.5)] transition-all transform hover:-translate-y-1"
                         >
                           <Download size={16} />
                           Extract CV
@@ -115,8 +115,8 @@ export function ResumeScanModal({ isOpen, onClose, onDownload }: { isOpen: boole
             </div>
 
             {/* Footer */}
-            <div className="p-4 bg-black/40 border-t border-[#e91e8c]/10 text-center">
-              <span className="text-[9px] font-mono text-[#fdf0ff]/30 tracking-tighter uppercase">Ayushi Raj // AR_ARCHITECT_REPLICATION_V3.0</span>
+            <div className="p-4 bg-black/40 border-t border-[#bf94ff]/10 text-center">
+              <span className="text-[9px] font-mono text-[#fdf0ff]/30 tracking-tighter uppercase">Roushan Kumar // RK_SINGULARITY_V4.0</span>
             </div>
           </motion.div>
         </div>

@@ -1,14 +1,20 @@
 {
-  "name": "Ayushi Raj | Sentient Architect",
-  "short_name": "AR Portfolio",
-  "description": "Portfolio of Ayushi Raj, specializing in AI & Full-Stack Development.",
+  "name": "Roushan Kumar | AI & System Architect",
+  "short_name": "Stellar Void",
+  "description": "Stellar Void Portfolio of Roushan Kumar, specializing in AI Systems, GPGPU Graphics, and High-Performance Architecture.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0d0a14",
-  "theme_color": "#e91e8c",
+  "background_color": "#000000",
+  "theme_color": "#bf94ff",
   "icons": [
     {
-      "src": "/icon-512.png",
+      "src": "/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

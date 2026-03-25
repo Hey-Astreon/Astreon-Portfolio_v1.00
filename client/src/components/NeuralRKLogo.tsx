@@ -19,48 +19,15 @@ export function NeuralRKLogo() {
         <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-transparent group-hover:border-[#00f5ff] transition-colors duration-500" />
         <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-transparent group-hover:border-[#00f5ff] transition-colors duration-500" />
 
-        {/* Neural RK SVG Signature */}
-        <svg
-          width="48"
-          height="32"
-          viewBox="0 0 120 80"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="relative z-10"
-        >
-          {/* R Path */}
-          <motion.path
-            d="M20 65V15H55C65 15 70 20 70 30C70 40 65 45 55 45H20M45 45L75 65"
-            stroke="#ffffff"
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-          />
-          {/* K Path */}
-          <motion.path
-            d="M85 15V65M85 40L110 15M85 40L110 65"
-            stroke="#00f5ff"
-            strokeWidth="6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="drop-shadow-[0_0_12px_rgba(0,245,255,0.8)]"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: "easeInOut", delay: 0.3 }}
-          />
-
-          {/* Terminal Nodes (Glow Dots) */}
-          <circle cx="20" cy="15" r="3" fill="#ffffff" />
-          <circle cx="20" cy="65" r="3" fill="#ffffff" />
-          <circle cx="85" cy="15" r="3" fill="#00f5ff" className="animate-pulse" />
-          <circle cx="85" cy="65" r="3" fill="#00f5ff" className="animate-pulse" />
-          <circle cx="110" cy="15" r="3" fill="#00f5ff" />
-          <circle cx="110" cy="65" r="3" fill="#00f5ff" />
-        </svg>
+        {/* Guasar Mark Branding */}
+        <motion.img
+          src="/guasar_mark.png"
+          alt="RK Guasar Mark"
+          className="relative z-10 w-16 h-auto drop-shadow-[0_0_15px_rgba(0,245,255,0.4)]"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        />
 
         {/* High-Frequency Glow Pulse */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#00f5ff]/0 via-[#00f5ff]/5 to-[#bf94ff]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -71,7 +38,7 @@ export function NeuralRKLogo() {
 
       {/* Identity Tag (Hidden but appears on desktop hover) */}
        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-          <span className="text-[6px] font-mono text-[#00f5ff] uppercase tracking-[0.5em]">Auth_Kernel: RK_v4</span>
+          <span className="text-[6px] font-mono text-[#00f5ff] uppercase tracking-[0.5em]">Stellar_Void: Guasar_Mark</span>
        </div>
     </motion.div>
   );

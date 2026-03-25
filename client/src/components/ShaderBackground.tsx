@@ -60,22 +60,21 @@ void main() {
   float noise = n1 * 0.5 + n2 * 0.25 + n3 * 0.125;
   
   // Map noise to colors
-  // Dark Femme Cyberpunk: Plum, Rose, Violet, Cyan
-  vec3 darkPlum = vec3(0.05, 0.04, 0.08); // #0d0a14
-  vec3 electricRose = vec3(0.91, 0.12, 0.55); // #e91e8c
-  vec3 amethystViolet = vec3(0.61, 0.35, 0.71); // #9b59b6
-  vec3 auroraTeal = vec3(0.0, 0.96, 1.0); // #00f5ff
+  // Stellar Void: Absolute Black, Celestial Cyan, Electric Violet
+  vec3 absoluteBlack = vec3(0.0, 0.0, 0.0);
+  vec3 celestialCyan = vec3(0.0, 0.96, 1.0); // #00f5ff
+  vec3 electricViolet = vec3(0.75, 0.58, 1.0); // #bf94ff
   
-  vec3 color = darkPlum;
+  vec3 color = absoluteBlack;
   
   // Layer the colors based on noise thresholds
   float f1 = smoothstep(-0.2, 0.8, noise);
   float f2 = smoothstep(0.2, 1.0, noise);
   float f3 = smoothstep(0.6, 1.2, noise);
   
-  color = mix(color, amethystViolet, f1 * 0.15); // Deep base aurora
-  color = mix(color, electricRose, f2 * 0.1); // Rose highlights
-  color = mix(color, auroraTeal, f3 * 0.05); // Cyan super-highlights
+  color = mix(color, electricViolet, f1 * 0.15); // Deep base aurora
+  color = mix(color, celestialCyan, f2 * 0.1); // Cyan highlights
+  color = mix(color, electricViolet, f3 * 0.05); // Violet super-highlights
   
   // Scanlines
   float scanline = sin(uv.y * uResolution.y * 0.5) * 0.02;

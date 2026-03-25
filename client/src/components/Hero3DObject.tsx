@@ -35,7 +35,7 @@ function ParticleField() {
       <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#ff6eb4"
+          color="#bf94ff"
           size={0.03}
           sizeAttenuation={true}
           depthWrite={false}
@@ -69,8 +69,8 @@ function CosmicCrystal() {
   }), []);
 
   const coreMaterial = useMemo(() => new THREE.MeshStandardMaterial({
-    color: "#e91e8c", // Electric Rose
-    emissive: "#e91e8c",
+    color: "#00f5ff", // Celestial Cyan
+    emissive: "#00f5ff",
     emissiveIntensity: 0.8,
     wireframe: true,
   }), []);
@@ -104,7 +104,7 @@ function CosmicCrystal() {
           {/* Wireframe edges for added cyber look */}
           <lineSegments>
             <edgesGeometry args={[geometry]} />
-            <lineBasicMaterial color="#ff6eb4" opacity={0.3} transparent />
+            <lineBasicMaterial color="#bf94ff" opacity={0.3} transparent />
           </lineSegments>
         </mesh>
         
@@ -136,8 +136,8 @@ function OrbitalLights() {
 
   return (
     <>
-      {/* Electric Rose Orbiting Light */}
-      <pointLight ref={light1Ref} color="#e91e8c" intensity={40} distance={20} />
+      {/* Celestial Cyan Orbiting Light */}
+      <pointLight ref={light1Ref} color="#00f5ff" intensity={40} distance={20} />
       
       {/* Amethyst Violet Orbiting Light */}
       <pointLight ref={light2Ref} color="#9b59b6" intensity={30} distance={20} />

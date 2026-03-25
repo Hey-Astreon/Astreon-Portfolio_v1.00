@@ -80,7 +80,7 @@ export function Navigation() {
             href="https://github.com/Hey-Astreon"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#fdf0ff] hover:text-[#ff6eb4] transition-colors p-2 hover:bg-[rgba(233,30,140,0.1)] rounded-sm border border-transparent hover:border-[rgba(233,30,140,0.3)]"
+            className="text-[#fdf0ff] hover:text-[#00f5ff] transition-colors p-2 hover:bg-[rgba(0,245,255,0.1)] rounded-sm border border-transparent hover:border-[rgba(0,245,255,0.3)]"
             aria-label="GitHub"
           >
             <Github className="w-5 h-5" />
@@ -89,7 +89,7 @@ export function Navigation() {
             href="https://www.linkedin.com/in/roushan-kumar-ab4b19250/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#fdf0ff] hover:text-[#ff6eb4] transition-colors p-2 hover:bg-[rgba(233,30,140,0.1)] rounded-sm border border-transparent hover:border-[rgba(233,30,140,0.3)]"
+            className="text-[#fdf0ff] hover:text-[#00f5ff] transition-colors p-2 hover:bg-[rgba(0,245,255,0.1)] rounded-sm border border-transparent hover:border-[rgba(0,245,255,0.3)]"
             aria-label="LinkedIn"
           >
             <Linkedin className="w-5 h-5" />
@@ -99,7 +99,7 @@ export function Navigation() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-[#fdf0ff] hover:text-[#ff6eb4] transition-colors"
+          className="md:hidden text-[#fdf0ff] hover:text-[#00f5ff] transition-colors"
           aria-label="Toggle Menu"
         >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -108,7 +108,7 @@ export function Navigation() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[rgba(13,10,20,0.95)] backdrop-blur-xl shadow-2xl border-t border-[rgba(233,30,140,0.2)] animate-in slide-in-from-top duration-300">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[rgba(0,0,0,0.95)] backdrop-blur-xl shadow-2xl border-t border-[rgba(0,245,255,0.2)] animate-in slide-in-from-top duration-300">
           <div className="flex flex-col gap-4 p-8">
             {[
               { label: 'About', id: 'about' },
@@ -119,7 +119,7 @@ export function Navigation() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-[#fdf0ff] hover:text-[#ff6eb4] transition-colors text-lg font-bold uppercase tracking-widest text-left py-3 border-b border-[rgba(233,30,140,0.1)] last:border-0 font-mono"
+                className="text-[#fdf0ff] hover:text-[#00f5ff] transition-colors text-lg font-bold uppercase tracking-widest text-left py-3 border-b border-[rgba(0,245,255,0.1)] last:border-0 font-mono"
               >
                 {item.label}
               </button>
@@ -129,7 +129,7 @@ export function Navigation() {
                 href="https://github.com/Hey-Astreon"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#fdf0ff] hover:text-[#ff6eb4] transition-colors p-3 bg-[rgba(233,30,140,0.1)] rounded-sm border border-[rgba(233,30,140,0.2)]"
+                className="text-[#fdf0ff] hover:text-[#00f5ff] transition-colors p-3 bg-[rgba(0,245,255,0.1)] rounded-sm border border-[rgba(0,245,255,0.2)]"
                 aria-label="GitHub"
               >
                 <Github className="w-6 h-6" />
@@ -138,7 +138,7 @@ export function Navigation() {
                 href="https://www.linkedin.com/in/roushan-kumar-ab4b19250/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#fdf0ff] hover:text-[#ff6eb4] transition-colors p-3 bg-[rgba(233,30,140,0.1)] rounded-sm border border-[rgba(233,30,140,0.2)]"
+                className="text-[#fdf0ff] hover:text-[#00f5ff] transition-colors p-3 bg-[rgba(0,245,255,0.1)] rounded-sm border border-[rgba(0,245,255,0.2)]"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-6 h-6" />

@@ -1,8 +1,10 @@
 // Re-synchronized ASTRA Neural Link
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { ASTRA_SYSTEM_PROMPT, ASTRA_QUICK_CHIPS } from '@/data/astraData';
-import { X, Send, Copy, Check, ChevronDown, Sparkles, Brain, Cpu, ShieldCheck } from 'lucide-react';
+import { X, Send, Copy, Check, ChevronDown, Sparkles, Brain, Cpu, ShieldCheck, Terminal, Maximize2, Activity } from 'lucide-react';
+import { NeuralCore } from './NeuralCore';
 import gsap from 'gsap';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // --- Types ---
 interface Message {
@@ -17,15 +19,11 @@ const SESSION_CACHE_KEY_PREFIX = 'astra_cache_v2_';
 const USAGE_TRACKER_KEY = 'astra_usage_tracker';
 
 // --- Components ---
-const AstraLogo = () => (
+const AstraLogo = ({ isStreaming }: { isStreaming: boolean }) => (
   <div className="relative w-12 h-12 flex items-center justify-center">
-    <div className="absolute inset-0 bg-gradient-to-br from-[#bf94ff] to-[#7d5fff] rounded-full opacity-20 animate-pulse" />
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative z-10 transition-transform hover:scale-110">
-      <path d="M16 4L26 24H6L16 4Z" stroke="#bf94ff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M11 14H21" stroke="#4dadeb" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="16" cy="14" r="2" fill="#4dadeb" className="animate-ping" />
-    </svg>
-    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#4dadeb] rounded-full border-2 border-[#000000] shadow-[0_0_8px_#4dadeb]" />
+    <div className="absolute inset-0 bg-[#bf94ff]/10 rounded-full animate-pulse" />
+    <NeuralCore isStreaming={isStreaming} className="w-10 h-10" />
+    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-[#00f5ff] rounded-full border-2 border-[#000000] shadow-[0_0_10px_#00f5ff]" />
   </div>
 );
 
@@ -38,9 +36,18 @@ export function AstraAssistant() {
   }]);
   const [input, setInput] = useState('');
   const [isStreaming, setIsStreaming] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const abortRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsInitializing(true);
+      const timer = setTimeout(() => setIsInitializing(false), 1200);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   // --- Rate Limiting Logic ---
   const getUsage = () => {
@@ -246,48 +253,109 @@ export function AstraAssistant() {
           className={`group p-1 rounded-full border-2 transition-all duration-500 hover:scale-110 active:scale-95 ${isOpen ? 'border-[#d1b3ff] bg-[#bf94ff]/10' : 'border-[#bf94ff] bg-[#000000]'}`}
           style={{ boxShadow: isOpen ? '0 0 30px rgba(191,148,255,0.4)' : '0 0 15px rgba(191,148,255,0.2)' }}
         >
-          {isOpen ? <X className="w-10 h-10 text-[#d1b3ff]" /> : <AstraLogo />}
+          {isOpen ? <X className="w-10 h-10 text-[#d1b3ff]" /> : <AstraLogo isStreaming={isStreaming} />}
         </button>
       </div>
 
       {/* Main Panel */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 w-[min(420px,calc(100vw-3rem))] h-[min(650px,calc(100vh-140px))] bg-[#000000]/98 border border-[#bf94ff]/30 rounded-2xl z-[9998] flex flex-col shadow-[0_0_50px_rgba(191,148,255,0.15)] backdrop-blur-2xl animate-in fade-in slide-in-from-bottom-5 duration-300">
+        <div 
+          data-lenis-prevent
+          className="fixed bottom-24 right-6 w-[min(420px,calc(100vw-3rem))] h-[min(650px,calc(100vh-140px))] bg-[#000000]/98 border border-[#bf94ff]/30 rounded-2xl z-[9998] flex flex-col shadow-[0_0_50px_rgba(191,148,255,0.15)] backdrop-blur-2xl animate-in fade-in slide-in-from-bottom-5 duration-300"
+        >
+          {/* Floating Tactical Brackets */}
+          <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#bf94ff]/40 rounded-tl-2xl z-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#bf94ff]/40 rounded-tr-2xl z-20 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#bf94ff]/40 rounded-bl-2xl z-20 pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#bf94ff]/40 rounded-br-2xl z-20 pointer-events-none" />
+
+          {/* Scanning Line */}
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-[#00f5ff]/20 animate-scan-line-fast z-30 pointer-events-none" />
+
+          {/* Initialization Overlay */}
+          <AnimatePresence>
+            {isInitializing && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 z-[100] bg-black flex flex-col items-center justify-center rounded-2xl"
+              >
+                <div className="w-24 h-24 mb-6">
+                  <NeuralCore isStreaming={true} />
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <span className="text-xs font-mono text-[#00f5ff] animate-pulse tracking-[0.4em] uppercase">Initializing_Link...</span>
+                  <div className="w-32 h-[2px] bg-white/10 overflow-hidden rounded-full">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 1, ease: "linear" }}
+                      className="h-full bg-[#bf94ff]"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Header */}
-          <div className="p-4 border-b border-[#bf94ff]/20 flex items-center justify-between bg-gradient-to-r from-[#bf94ff]/5 to-transparent">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full border border-[#bf94ff]/40 flex items-center justify-center bg-[#bf94ff]/10">
-                <Brain className="w-5 h-5 text-[#d1b3ff]" />
+          <div className="relative p-5 border-b border-[#bf94ff]/20 flex items-center justify-between bg-black/40 backdrop-blur-md rounded-t-2xl">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-lg border border-[#bf94ff]/30 flex items-center justify-center bg-[#bf94ff]/5 relative overflow-hidden group">
+                <NeuralCore isStreaming={isStreaming} className="w-10 h-10" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-[#bf94ff]/20 to-transparent transition-opacity" />
               </div>
               <div>
-                <h3 className="text-sm font-black font-orbitron text-white tracking-widest uppercase">ASTRA CORE</h3>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 bg-[#4dadeb] rounded-full animate-pulse shadow-[0_0_5px_#4dadeb]" />
-                  <span className="text-[9px] font-mono text-[#4dadeb]/60 uppercase tracking-tighter">Neural Link Established</span>
+                <h3 className="text-sm font-black font-orbitron text-white tracking-[0.3em] uppercase">ASTRA CORE</h3>
+                <div className="flex items-center gap-2">
+                  <Activity size={10} className="text-[#00f5ff] animate-pulse" />
+                  <span className="text-[9px] font-mono text-[#00f5ff] uppercase tracking-widest">Neural Sync active</span>
                 </div>
               </div>
             </div>
-            <div className="flex gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#4dadeb]/40" />
+            <div className="flex items-center gap-3">
+              <div className="flex flex-col items-end">
+                <span className="text-[8px] font-mono text-white/40 uppercase">LATENCY: {Math.floor(Math.random()*20+5)}ms</span>
+                <span className="text-[8px] font-mono text-[#bf94ff] uppercase">SECURE_LINK: AES_256</span>
+              </div>
+              <div className="w-px h-8 bg-white/10" />
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-1 hover:text-[#bf94ff] transition-colors"
+              >
+                <X size={18} />
+              </button>
             </div>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth custom-scrollbar">
+          <div 
+            data-lenis-prevent
+            className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth custom-scrollbar"
+          >
             {messages.map((msg) => (
               <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed ${
+                <div className={`max-w-[85%] p-4 rounded-xl text-sm leading-relaxed relative overflow-hidden ${
                   msg.role === 'user' 
-                  ? 'bg-gradient-to-br from-[#bf94ff]/20 to-[#7d5fff]/10 border border-[#bf94ff]/30 text-white rounded-br-none' 
-                  : 'bg-white/5 border border-white/10 text-white/90 rounded-bl-none'
+                  ? 'bg-[#bf94ff]/10 border border-[#bf94ff]/30 text-white rounded-br-none shadow-[0_0_20px_rgba(191,148,255,0.1)]' 
+                  : 'bg-white/[0.03] border border-white/10 text-white/90 rounded-bl-none backdrop-blur-sm'
                 }`}>
+                  {/* Message Decorator */}
+                  <div className={`absolute top-0 ${msg.role === 'user' ? 'right-0 border-t border-r' : 'left-0 border-t border-l'} w-2 h-2 border-[#00f5ff]/40`} />
+                  
                   {msg.content ? (
-                    <div className="whitespace-pre-wrap break-words">{msg.content}</div>
+                    <div className="whitespace-pre-wrap break-words relative z-10">{msg.content}</div>
                   ) : (
                     <div className="flex gap-1.5 py-2 px-1">
-                      {[0,1,2].map(i => <div key={i} className="w-1.5 h-1.5 bg-[#00f5ff] rounded-full animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />)}
+                      {[0,1,2].map(i => <div key={i} className="w-1.5 h-1.5 bg-[#00f5ff] rounded-full animate-bounce shadow-[0_0_8px_#00f5ff]" style={{ animationDelay: `${i * 0.15}s` }} />)}
                     </div>
                   )}
+                  
+                  {/* Metadata Tag */}
+                  <div className={`absolute bottom-1 ${msg.role === 'user' ? 'left-2' : 'right-2'} text-[6px] font-mono opacity-20 uppercase tracking-[0.2em]`}>
+                    {msg.role === 'user' ? 'User_Transmit' : 'Astra_Output'} // {new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second: '2-digit'})}
+                  </div>
                 </div>
               </div>
             ))}

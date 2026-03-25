@@ -79,8 +79,8 @@ export function TacticalArsenal() {
       { name: 'Next.js', color: '#ffffff' },
       { name: 'Tailwind', color: '#06b6d4' },
       { name: 'Three.js', color: '#ffffff' },
-      { name: 'WebGL', color: '#990000' },
-      { name: 'Framer Motion', color: '#ff0055' },
+      { name: 'WebGL', color: '#00f5ff' },
+      { name: 'Framer Motion', color: '#bf94ff' },
     ],
     'Backend Systems': [
       { name: 'FastAPI', color: '#05998b' },
@@ -94,7 +94,7 @@ export function TacticalArsenal() {
       { name: 'Prompt Engineering', color: '#00f5ff' },
       { name: 'LangGraph', color: '#9b59b6' },
       { name: 'Gemini API', color: '#4285f4' },
-      { name: 'LLM Integration', color: '#e91e8c' },
+      { name: 'LLM Integration', color: '#bf94ff' },
       { name: 'Logic Systems', color: '#cc99ff' },
     ],
   };
